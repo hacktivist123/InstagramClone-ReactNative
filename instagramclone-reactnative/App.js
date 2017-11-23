@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Text, View, Image, StatusBar} from 'react-native';
+import {Text, View, ImageBackground, Image, StatusBar, ScrollView} from 'react-native';
+import LoginButton from './src/components/LoginButton'
 
 export default class App extends Component {
 
@@ -8,40 +9,56 @@ export default class App extends Component {
   }
 
 
-loginScreenComponent = () =>{
-  return (
-    <view>
-      <Image source={require('./src/images/ibiza Sunset.jpg')}
-       resizeMode={'cover'}
-       style={viewstyles.container}
-       />
-       <Image Source={require('./src/images/instagram-text-black.png')}
-        resizeMode={'cover'}
-        style={viewstyles.instagramLogoStyle}/>
-        </view>
-  );
-};
+  loginScreenComponent = () =>{
+    return (
+      <ImageBackground source={require('./src/images/Ibiza-Sunset.jpg')}
+      resizeMode={'cover'}
+      style={viewstyles.container}
+      >
+      <StatusBar
+      backgroundColor="blue"/>
+
+      <Image
+      Source={require('./src/images/instagram-text-black.png')}
+      resizeMode={'cover'}
+      style={viewstyles.instagramTextLogo}/>
+
+      <ScrollView>
+      <Image
+      Source={require('./src/images/instagram-text-black.png')}
+      resizeMode={'cover'}
+      style={viewstyles.instagramTextLogo}/>
+
+      </ScrollView>
+
+      <ImageBackground>
+    )
+  };
+
+
   render() {
     return (
       this.loginScreenComponent()
     );
   }
-}
 
-const viewstyles ={
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-};
-
-  const textstyles = {
-    container{
+  const viewstyles ={
+    container: {
       flex: 1,
-      alignItems:'center'
-      justifyContent:'center'
+      alignItems: 'center',
+    },
+    instagramTextLogo: {
+      flex: 0,
+      width: 150,
+      height: 80,
+      marginTop: '65%',
+      marginBottom: 25
+    };
+    instagramLoginButtonView: {
+
     }
 
-  };
+    const textstyles = {
+
+
+    };
