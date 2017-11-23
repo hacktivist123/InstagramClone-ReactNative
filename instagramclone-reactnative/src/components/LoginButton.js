@@ -13,7 +13,7 @@ class LoginButton extends Component {
     return(
       <TouchableHighlight
       underlayColor={'transparent'}
-      activeOpacity={this.props.activeopacity}
+      activeOpacity={this.props.activeOpacity}
       style={[this.props.touchableHighlightStyle, viewStyles.supplementaryHighlightStyle]}
       onPress={this.props.buttonTapped}
       >
@@ -41,4 +41,4 @@ const viewStyles = {
 
 };
 
-export {LoginButton};
+export default LoginButton;
