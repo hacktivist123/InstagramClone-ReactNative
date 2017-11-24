@@ -89,11 +89,18 @@ export default class App extends Component {
       <TapableText
       textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
       //this should create a link behind the Get Help signing in text using Linkin and openURL
-       textTapped={ () => Linking.openURL(urls.forgotInstagramLogin) }
-       >
+      textTapped={ () => Linking.openURL(urls.forgotInstagramLogin) }
+      >
       Get Help signing in
       </TapableText>
       </View>
+
+      <view style = {viewStyles.orSeperatorView}>
+      <view style = { viewStyles.orSeperatorLine}/>
+      <Text style = {textStyles.orSeperatorTextStyle}>OR</Text>
+
+      </view>
+
       </ScrollView>
 
       </ImageBackground>
@@ -151,6 +158,21 @@ const viewStyles = {
     alignItems: 'center',
     justifyContent: 'center'
   },
+  orSeperatorView: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 13,
+    paddingHorizontal: 5
+  },
+  orSeperatorLine: {
+    backgroundColor: colors.instagramButtonBorderColor,
+    borderColor: colors.instagramButtonBorderColor,
+    height: 1,
+    flex: 5,
+    borderWidth: 0.5
+  },
 };
 const textStyles = {
   forgottenLogin: {
@@ -161,5 +183,10 @@ const textStyles = {
   forgottenLoginBold: {
     fontWeight: 'bold',
     marginLeft: 3
+  },
+  orSeperatorTextStyle: {
+    color: 'white',
+    backgroundColor: 'transparent',
+    fontWeight: 'bold'
   },
 };
