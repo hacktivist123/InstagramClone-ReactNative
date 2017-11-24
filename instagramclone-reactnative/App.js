@@ -57,7 +57,7 @@ export default class App extends Component {
       <Image
       source={require('./src/images/instagram-text-black.png')}
       style={viewStyles.instagramTextLogo}
-      resizeMode={'conain'}
+      resizeMode={'contain'}
       />
       <LoginButton
       buttonViewStyle={viewStyles.instagramLoginButtonView}
@@ -67,7 +67,18 @@ export default class App extends Component {
       activeOpacity={0.75}
 
       >
-      Log In
+      Log In (Via Instagram)
+      </LoginButton>
+
+      <LoginButton
+      buttonViewStyle={[viewStyles.instagramLoginButtonView, viewStyles.facebookLoginButton]}
+      buttonTextStyle={{color: colors.text, fontWeight: '500'}}
+      buttonTapped={this.loginButtonPressed}
+      touchableHighlightStyle={[viewStyles.instagramButtonTouchabeHighlightStyle, viewStyles.facebookButtonTouchableHighlightStyle]}
+      activeOpacity={0.75}
+
+      >
+      Facebook login
       </LoginButton>
 
       </ScrollView>
@@ -112,6 +123,13 @@ const viewStyles = {
     width: standardComponentWidth,
     height: loginButtonInfo.height,
     marginTop: 5
+  },
+  facebookLoginButton: {
+    backgroundColor: colors.facebook,
+  },
+  facebookButtonTouchableHighlightStyle: {
+    marginTop: 20,
+    marginBottom: 10
   },
 
 };
