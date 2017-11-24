@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, ImageBackground, StatusBar, ScrollView, Image} from 'react-native';
+import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking} from 'react-native';
 import LoginButton from './src/components/LoginButton';
 import Dimensions from 'Dimensions';
 import TapableText from  './src/components/TapableText';
@@ -76,16 +76,19 @@ export default class App extends Component {
       buttonTextStyle={{color: colors.text, fontWeight: '500'}}
       buttonTapped={this.loginButtonPressed}
       touchableHighlightStyle={[viewStyles.instagramButtonTouchabeHighlightStyle, viewStyles.facebookButtonTouchableHighlightStyle]}
-      activeOpacity={0.75}
-
-      >
+      activeOpacity={0.75}>
       Facebook login
       </LoginButton>
 
-      <view style = {viewStyles.forgottenLoginEncapsulationView}>
-        <Text style={textStyles.forgottenLogin}>Forgot Your Login Details?</Text>
-
-      </view>
+      <View style = {viewStyles.forgottenLoginEncapsulationView}>
+      <Text style={textStyles.forgottenLogin}>Forgot Your Login Details?</Text>
+      <TapableText
+      textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
+       textTapped={ () => Linking.openURL(urls.forgotInstagramLogin) }
+       >
+      Get Help signing in
+      </TapableText>
+      </View>
       </ScrollView>
 
       </ImageBackground>
@@ -151,6 +154,7 @@ const textStyles = {
     backgroundColor: 'transparent'
   },
   forgottenLoginBold: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginLeft: 3
   },
 };
