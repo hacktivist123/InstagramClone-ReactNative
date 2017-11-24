@@ -1,6 +1,6 @@
 //Created by Akintayo shedrack
-//With React native
-// started ; Nov 20
+//Instagram Clone With React native
+// started ; Nov 20 2017
 
 import React, {Component} from 'react';
 import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking} from 'react-native';
@@ -10,6 +10,7 @@ import TapableText from  './src/components/TapableText';
 
 const windowSize = Dimensions.get('window');
 const standardComponentWidth = windowSize.width*0.82;
+const twitterIconSize = 19;
 
 const colors = {
   facebook: 'rgb(59, 89, 152)',
@@ -45,6 +46,16 @@ export default class App extends Component {
     console.log("Button was pressed");
   };
 
+  loginWithTwitter = () => {
+    return (
+      <view style= {viewStyles.twitterLoginViewStyle}>
+        <Image
+          source={require('./src/images/icons/twitter_bird.png')}
+          style ={viewStyles.twitterIconViewStyle}
+          resizeMode = 'contain'/>
+      </view>
+    );
+  }
 
   loginScreenComponent = () => {
     return (
@@ -98,8 +109,17 @@ export default class App extends Component {
       <view style = {viewStyles.orSeperatorView}>
       <view style = { viewStyles.orSeperatorLine}/>
       <Text style = {textStyles.orSeperatorTextStyle}>OR</Text>
-
+      <TapableText
+      textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold, textStyles.twitterTextSize]}
+      //this should create a link behind the Get Help signing in text using Linkin and openURL
+      textTapped={ () => Linking.openURL(urls.twitterLogin) }
+      >
+      Login with Twitter
+      </TapableText>
+      <view style = {viewStyles.orSeperatorLine}/>
       </view>
+
+      {this.loginWithTwitter()}
 
       </ScrollView>
 
@@ -163,7 +183,7 @@ const viewStyles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 13,
+    marginVertical: 14,
     paddingHorizontal: 5
   },
   orSeperatorLine: {
@@ -172,6 +192,17 @@ const viewStyles = {
     height: 1,
     flex: 5,
     borderWidth: 0.5
+  },
+  twitterLoginViewStyle: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  twitterIconViewStyle:{
+    width: twitterIconSize,
+    height: twitterIconSize,
+    MarginHorizontal: 14
   },
 };
 const textStyles = {
@@ -189,4 +220,7 @@ const textStyles = {
     backgroundColor: 'transparent',
     fontWeight: 'bold'
   },
+  twitterTextSize: {
+    fontSize: 14
+  }
 };
