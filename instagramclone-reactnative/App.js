@@ -4,7 +4,7 @@ import LoginButton from './src/components/LoginButton';
 import Dimensions from 'Dimensions';
 
 const windowSize = Dimensions.get('window');
-const standardComponentWidth = windowSize.width = 0.82;
+const standardComponentWidth = windowSize.width*0.82;
 
 const colors = {
   facebook: 'rgb(59, 89, 152)',
