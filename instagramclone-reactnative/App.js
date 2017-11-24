@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Text, View, ImageBackground, StatusBar, ScrollView, Image} from 'react-native';
-import LoginButton from './src/Component/LoginButton';
+import LoginButton from './src/components/LoginButton';
 import Dimensions from 'Dimensions';
 
 const windowSize = Dimensions.get('window');
