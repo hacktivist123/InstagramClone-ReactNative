@@ -1,3 +1,7 @@
+//Created by Akintayo shedrack
+//With React native
+// started ; Nov 20
+
 import React, {Component} from 'react';
 import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking} from 'react-native';
 import LoginButton from './src/components/LoginButton';
@@ -84,6 +88,7 @@ export default class App extends Component {
       <Text style={textStyles.forgottenLogin}>Forgot Your Login Details?</Text>
       <TapableText
       textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
+      //this should create a link behind the Get Help signing in text using Linkin and openURL
        textTapped={ () => Linking.openURL(urls.forgotInstagramLogin) }
        >
       Get Help signing in
