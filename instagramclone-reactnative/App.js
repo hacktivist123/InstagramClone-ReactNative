@@ -1,6 +1,6 @@
 //Created by Akintayo shedrack
-//With React native
-// started ; Nov 20
+//Instagram Clone With React native
+// started ; Nov 20 2017
 
 import React, {Component} from 'react';
 import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking} from 'react-native';
@@ -10,6 +10,7 @@ import TapableText from  './src/components/TapableText';
 
 const windowSize = Dimensions.get('window');
 const standardComponentWidth = windowSize.width*0.82;
+const twitterIconSize = 19;
 
 const colors = {
   facebook: 'rgb(59, 89, 152)',
@@ -45,6 +46,31 @@ export default class App extends Component {
     console.log("Button was pressed");
   };
 
+  loginWithTwitter = () => {
+    return (
+      <View style= {viewStyles.twitterLoginViewStyle}>
+      <Image
+      source={require('./src/images/icons/twitter_bird.png')}
+      style ={viewStyles.twitterIconViewStyle}
+      resizeMode = 'contain'/>
+      </View>
+    );
+  }
+
+  signUpFootercomponent=() => {
+    return(
+      <View style= {[viewStyles.signUpFootercomponent]}>
+      <Text style={textStyles.forgottenLogin}>Dont Have An Account?</Text>
+      <TapableText
+      textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
+      //this should create a link behind the SignUp in text using Linkin and openURL
+      textTapped={ () => Linking.openURL(urls.instagramSignUp) }
+      >
+      Sign Up
+      </TapableText>
+      </View>
+    );
+  }
 
   loginScreenComponent = () => {
     return (
@@ -95,14 +121,23 @@ export default class App extends Component {
       </TapableText>
       </View>
 
-      <view style = {viewStyles.orSeperatorView}>
-      <view style = { viewStyles.orSeperatorLine}/>
+      <View style = {viewStyles.orSeperatorView}>
+      <View style = { viewStyles.orSeperatorLine}/>
       <Text style = {textStyles.orSeperatorTextStyle}>OR</Text>
+      <TapableText
+      textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold, textStyles.twitterTextSize]}
+      //this should create a link behind the login with twitter in text using Linkin and openURL
+      textTapped={ () => Linking.openURL(urls.twitterLogin) }
+      >
+      Login with Twitter
+      </TapableText>
+      <View style = {viewStyles.orSeperatorLine}/>
+      </View>
 
-      </view>
+      {this.loginWithTwitter()}
 
       </ScrollView>
-
+      {this.signUpFootercomponent}
       </ImageBackground>
 
     );
@@ -124,7 +159,7 @@ const viewStyles = {
   instagramTextLogo: {
     width: 150,
     height: 80,
-    marginTop: '65%',
+    marginTop: '35%',
     marginBottom: 25,
     alignSelf : 'center'
   },
@@ -163,7 +198,7 @@ const viewStyles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 13,
+    marginVertical: 14,
     paddingHorizontal: 5
   },
   orSeperatorLine: {
@@ -172,6 +207,27 @@ const viewStyles = {
     height: 1,
     flex: 5,
     borderWidth: 0.5
+  },
+  twitterLoginViewStyle: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  twitterIconViewStyle:{
+    width: twitterIconSize,
+    height: twitterIconSize,
+    MarginHorizontal: 14
+  },
+  signUpFootercomponent:{
+    flex: 0.3,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 255, 0.15)',
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 1.5},
+    height: null,
+    width: windowSize.width
   },
 };
 const textStyles = {
@@ -189,4 +245,7 @@ const textStyles = {
     backgroundColor: 'transparent',
     fontWeight: 'bold'
   },
+  twitterTextSize: {
+    fontSize: 14
+  }
 };
