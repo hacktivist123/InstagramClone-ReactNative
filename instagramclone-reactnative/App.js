@@ -48,12 +48,27 @@ export default class App extends Component {
 
   loginWithTwitter = () => {
     return (
-      <view style= {viewStyles.twitterLoginViewStyle}>
-        <Image
-          source={require('./src/images/icons/twitter_bird.png')}
-          style ={viewStyles.twitterIconViewStyle}
-          resizeMode = 'contain'/>
-      </view>
+      <View style= {viewStyles.twitterLoginViewStyle}>
+      <Image
+      source={require('./src/images/icons/twitter_bird.png')}
+      style ={viewStyles.twitterIconViewStyle}
+      resizeMode = 'contain'/>
+      </View>
+    );
+  }
+
+  signUpFootercomponent=() => {
+    return(
+      <View style= {[viewStyles.signUpFootercomponent]}>
+      <Text style={textStyles.forgottenLogin}>Dont Have An Account?</Text>
+      <TapableText
+      textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
+      //this should create a link behind the SignUp in text using Linkin and openURL
+      textTapped={ () => Linking.openURL(urls.instagramSignUp) }
+      >
+      Sign Up
+      </TapableText>
+      </View>
     );
   }
 
@@ -106,23 +121,23 @@ export default class App extends Component {
       </TapableText>
       </View>
 
-      <view style = {viewStyles.orSeperatorView}>
-      <view style = { viewStyles.orSeperatorLine}/>
+      <View style = {viewStyles.orSeperatorView}>
+      <View style = { viewStyles.orSeperatorLine}/>
       <Text style = {textStyles.orSeperatorTextStyle}>OR</Text>
       <TapableText
       textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold, textStyles.twitterTextSize]}
-      //this should create a link behind the Get Help signing in text using Linkin and openURL
+      //this should create a link behind the login with twitter in text using Linkin and openURL
       textTapped={ () => Linking.openURL(urls.twitterLogin) }
       >
       Login with Twitter
       </TapableText>
-      <view style = {viewStyles.orSeperatorLine}/>
-      </view>
+      <View style = {viewStyles.orSeperatorLine}/>
+      </View>
 
       {this.loginWithTwitter()}
 
       </ScrollView>
-
+      {this.signUpFootercomponent}
       </ImageBackground>
 
     );
@@ -144,7 +159,7 @@ const viewStyles = {
   instagramTextLogo: {
     width: 150,
     height: 80,
-    marginTop: '65%',
+    marginTop: '35%',
     marginBottom: 25,
     alignSelf : 'center'
   },
@@ -203,6 +218,16 @@ const viewStyles = {
     width: twitterIconSize,
     height: twitterIconSize,
     MarginHorizontal: 14
+  },
+  signUpFootercomponent:{
+    flex: 0.3,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 255, 0.15)',
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 1.5},
+    height: null,
+    width: windowSize.width
   },
 };
 const textStyles = {
