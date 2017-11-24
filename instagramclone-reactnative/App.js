@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Text, View, ImageBackground, StatusBar, ScrollView, Image} from 'react-native';
 import LoginButton from './src/components/LoginButton';
 import Dimensions from 'Dimensions';
+import TapableText from  './src/components/TapableText';
 
 const windowSize = Dimensions.get('window');
 const standardComponentWidth = windowSize.width*0.82;
@@ -15,7 +16,7 @@ const colors = {
 
 const loginButtonInfo = {
   height: 45,
-  pageFontSize: 11,
+  pageFontSize: 14,
   borderWidth: 0.8,
   borderRadius: 5
 }
@@ -81,6 +82,10 @@ export default class App extends Component {
       Facebook login
       </LoginButton>
 
+      <view style = {viewStyles.forgottenLoginEncapsulationView}>
+        <Text style={textStyles.forgottenLogin}>Forgot Your Login Details?</Text>
+
+      </view>
       </ScrollView>
 
       </ImageBackground>
@@ -129,10 +134,23 @@ const viewStyles = {
   },
   facebookButtonTouchableHighlightStyle: {
     marginTop: 20,
-    marginBottom: 10
+    marginBottom: 5
   },
-
+  forgottenLoginEncapsulationView: {
+    flexDirection: 'row',
+    flex: 1,
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 };
 const textStyles = {
-
+  forgottenLogin: {
+    color : 'white',
+    fontSize: loginButtonInfo.pageFontSize,
+    backgroundColor: 'transparent'
+  },
+  forgottenLoginBold: {
+    fontWeight: 'bold'
+  },
 };
