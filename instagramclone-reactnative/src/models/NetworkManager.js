@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const axiosEndpointManager = axios.create ({
   baseURL: 'https://api.instagram.com/v1/users/',
-  timeout: 30000
+  timeout: 50000
 });
 
 const responseState = {
@@ -67,4 +67,4 @@ class NetworkManager {
 }
 
 
-export { NetworkManager };
+export default NetworkManager
