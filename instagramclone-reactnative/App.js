@@ -52,7 +52,6 @@ export default class App extends Component {
   loginButtonPressed = () => {
     this.setState({ displayAuthenticationWebView: true});
   }
-<<<<<<< HEAD
 
   onURLStateChange = (webViewState) => {
     const accessTokenSubString = 'access_token='
@@ -90,8 +89,6 @@ export default class App extends Component {
     );
   }
 
-=======
-
   onURLStateChange = (webViewState) => {
     const accessTokenSubString = 'access_token='
     console.log('Current URL = ' + webViewState.url);
@@ -117,7 +114,6 @@ authenticationWebViewComponent = () => {
     );
   }
 
->>>>>>> 728e582aaa84337368846b5549022ac7b1bf6e29
   signUpFootercomponent=() => {
     return(
       <View style= {[viewStyles.signUpFootercomponent]}>
@@ -233,8 +229,6 @@ authenticationWebViewComponent = () => {
       fontWeight: 'bold'
     },
   };
-<<<<<<< HEAD
-  =======
   const viewStyles = {
     container: {
       flex: 1,
@@ -314,8 +308,6 @@ authenticationWebViewComponent = () => {
       width: windowSize.width
     },
   };
-=======
-=======
 const viewStyles = {
   container: {
     flex: 1,
@@ -395,4 +387,3 @@ const viewStyles = {
     width: windowSize.width
   },
 };
->>>>>>> 728e582aaa84337368846b5549022ac7b1bf6e29
