@@ -1,6 +1,6 @@
-//Created by Akintayo shedrack
-//Instagram Clone With React native
-// started ; Nov 20 2017
+//Author = Akintayo shedrack
+//Title = Instagram Clone With React native
+//Time = 9:30am, Nov 20, 2017
 
 import React, {Component} from 'react';
 import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking, WebView} from 'react-native';
@@ -52,24 +52,23 @@ export default class App extends Component {
   loginButtonPressed = () => {
     this.setState({ displayAuthenticationWebView: true});
   }
-<<<<<<< HEAD
 
   onURLStateChange = (webViewState) => {
     const accessTokenSubString = 'access_token='
     console.log('Current URL = ' + webViewState.url)
 
-  if(webViewState.url.includes(accessTokenSubString)){
-    //safegaurd conditional if statement
-    if(this.state.accessToken.length < 1){
-      //the index of the begining of the accessToken
-      var startIndexOfAccessToken = webViewState.url.lastIndexOf(accessTokenSubString) + accessTokenSubString.length;
-      var foundAccessToken = webViewState.substr(startIndexOfAccessToken);
-      console.log("My Access Token = " + foundAccessToken);
+    if(webViewState.url.includes(accessTokenSubString)){
+      //safegaurd conditional if statement
+      if(this.state.accessToken.length < 1){
+        //the index of the begining of the accessToken
+        var startIndexOfAccessToken = webViewState.url.lastIndexOf(accessTokenSubString) + accessTokenSubString.length;
+        var foundAccessToken = webViewState.substr(startIndexOfAccessToken);
+        console.log("My Access Token = " + foundAccessToken);
 
-      this.setState({accessToken: foundAccessToken, displayAuthenticationWebView: false });
+        this.setState({accessToken: foundAccessToken});
+      }
     }
   }
-}
   authenticationWebViewComponent = () => {
     return(
       <WebView source={{ uri: this.state.authenticationURL}}
@@ -90,22 +89,27 @@ export default class App extends Component {
     );
   }
 
-=======
-
   onURLStateChange = (webViewState) => {
     const accessTokenSubString = 'access_token='
     console.log('Current URL = ' + webViewState.url);
   }
 
-authenticationWebViewComponent = () => {
-  return(
-    <WebView source={{ uri: this.state.authenticationURL}}
-     startInLoadingState={true}
-     onNavigationStateChange={this.onURLStateChange}/>
-  );
+  authenticationWebViewComponent = () => {
+    return(
+      <WebView source={{ uri: this.state.authenticationURL}}
+      startInLoadingState={true}
+      onNavigationStateChange={this.onURLStateChange}/>
+    );
 
-}
-
+  }
+  instagramFeedScreenComponent = () => {
+    return(
+      <View style = {{ flex:1, alignItems: 'center', justifyContent : 'center'}}>
+      <Text>Congratulations Oti Wole Instagram with accessToken:</Text>
+      <Text>{this.state.accessToken}</Text>
+      </View>
+    );
+  }
   loginWithTwitter = () => {
     return (
       <View style= {viewStyles.twitterLoginViewStyle}>
@@ -116,8 +120,6 @@ authenticationWebViewComponent = () => {
       </View>
     );
   }
-
->>>>>>> 728e582aaa84337368846b5549022ac7b1bf6e29
   signUpFootercomponent=() => {
     return(
       <View style= {[viewStyles.signUpFootercomponent]}>
@@ -205,194 +207,203 @@ authenticationWebViewComponent = () => {
 
   }
   render() {
-    if (this.state.displayAuthenticationWebView == true){
+
+    var hasSucessfullyLoggedIn = (this.state.accessToken.length > 1);
+    var shouldDisplayLoginScreen = (this.state.displayAuthenticationWebView == false && this.state.accessToken.length < 1);
+
+    if(shouldDisplayLoginScreen){
       return(
-        this.authenticationWebViewComponent()
+        this.loginScreenComponent
       );
     }
+
+    else if (hasSucessfullyLoggedIn ){
+      return(
+        <View style = {{ flex:1, alignItems: 'center', justifyContent : 'center'}}>
+        <Text>Congratulations Oti Wole Instagram with accessToken:</Text>
+        <Text>{this.state.accessToken}</Text>
+        </View>
+      );
+    }
+
     else {
       return(
         this.loginScreenComponent()
       );
     }
-  }
 
-  const textStyles = {
-    forgottenLogin: {
-      color : 'white',
-      fontSize: loginButtonInfo.pageFontSize,
-      backgroundColor: 'transparent'
-    },
-    forgottenLoginBold: {
-      fontWeight: 'bold',
-      marginLeft: 3
-    },
-    orSeperatorTextStyle: {
-      color: 'white',
-      backgroundColor: 'transparent',
-      fontWeight: 'bold'
-    },
-  };
-<<<<<<< HEAD
-  =======
-  const viewStyles = {
-    container: {
-      flex: 1,
-      alignItems: 'center',
-    },
-    instagramTextLogo: {
-      width: 150,
-      height: 80,
-      marginTop: '35%',
-      marginBottom: 25,
-      alignSelf : 'center'
-    },
-    instagramLoginButtonView: {
-      backgroundColor: 'transparent',
-      borderColor: colors.instagramButtonBorderColor,
-      borderWidth: loginButtonInfo.borderWidth,
-      borderRadius: loginButtonInfo.borderRadius,
-      width: standardComponentWidth,
-      height: loginButtonInfo.height,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    instagramButtonTouchableHighlightstyle: {
-      backgroundColor: 'transparent',
-      width: standardComponentWidth,
-      height: loginButtonInfo.height,
-      marginTop: 5
-    },
-    facebookLoginButton: {
-      backgroundColor: colors.facebook,
-    },
-    facebookButtonTouchableHighlightStyle: {
-      marginTop: 20,
-      marginBottom: 5
-    },
-    forgottenLoginEncapsulationView: {
-      flexDirection: 'row',
-      flex: 1,
-      marginTop: 10,
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    orSeperatorView: {
-      flexDirection: 'row',
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginVertical: 14,
-      paddingHorizontal: 5
-    },
-    orSeperatorLine: {
-      backgroundColor: colors.instagramButtonBorderColor,
-      borderColor: colors.instagramButtonBorderColor,
-      height: 1,
-      flex: 5,
-      borderWidth: 0.5
-    },
-    twitterLoginViewStyle: {
-      flexDirection: 'row',
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    twitterIconViewStyle:{
-      width: twitterIconSize,
-      height: twitterIconSize,
-      MarginHorizontal: 14
-    },
-    signUpFootercomponent:{
-      flex: 0.3,
-      backgroundColor: 'rgba(255, 255, 255, 0.15)',
-      borderWidth: 1,
-      borderColor: 'rgba(255, 255, 255, 255, 0.15)',
-      shadowColor: 'black',
-      shadowOffset: {width: 0, height: 1.5},
-      height: null,
-      width: windowSize.width
-    },
-  };
-=======
-=======
-const viewStyles = {
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  instagramTextLogo: {
-    width: 150,
-    height: 80,
-    marginTop: '35%',
-    marginBottom: 25,
-    alignSelf : 'center'
-  },
-  instagramLoginButtonView: {
-    backgroundColor: 'transparent',
-    borderColor: colors.instagramButtonBorderColor,
-    borderWidth: loginButtonInfo.borderWidth,
-    borderRadius: loginButtonInfo.borderRadius,
-    width: standardComponentWidth,
-    height: loginButtonInfo.height,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  instagramButtonTouchableHighlightstyle: {
-    backgroundColor: 'transparent',
-    width: standardComponentWidth,
-    height: loginButtonInfo.height,
-    marginTop: 5
-  },
-  facebookLoginButton: {
-    backgroundColor: colors.facebook,
-  },
-  facebookButtonTouchableHighlightStyle: {
-    marginTop: 20,
-    marginBottom: 5
-  },
-  forgottenLoginEncapsulationView: {
-    flexDirection: 'row',
-    flex: 1,
-    marginTop: 10,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  orSeperatorView: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 14,
-    paddingHorizontal: 5
-  },
-  orSeperatorLine: {
-    backgroundColor: colors.instagramButtonBorderColor,
-    borderColor: colors.instagramButtonBorderColor,
-    height: 1,
-    flex: 5,
-    borderWidth: 0.5
-  },
-  twitterLoginViewStyle: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  twitterIconViewStyle:{
-    width: twitterIconSize,
-    height: twitterIconSize,
-    MarginHorizontal: 14
-  },
-  signUpFootercomponent:{
-    flex: 0.3,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 255, 0.15)',
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 1.5},
-    height: null,
-    width: windowSize.width
-  },
-};
->>>>>>> 728e582aaa84337368846b5549022ac7b1bf6e29
+    const textStyles = {
+      forgottenLogin: {
+        color : 'white',
+        fontSize: loginButtonInfo.pageFontSize,
+        backgroundColor: 'transparent'
+      },
+      forgottenLoginBold: {
+        fontWeight: 'bold',
+        marginLeft: 3
+      },
+      orSeperatorTextStyle: {
+        color: 'white',
+        backgroundColor: 'transparent',
+        fontWeight: 'bold'
+      },
+    };
+    const viewStyles = {
+      container: {
+        flex: 1,
+        alignItems: 'center',
+      },
+      instagramTextLogo: {
+        width: 150,
+        height: 80,
+        marginTop: '35%',
+        marginBottom: 25,
+        alignSelf : 'center'
+      },
+      instagramLoginButtonView: {
+        backgroundColor: 'transparent',
+        borderColor: colors.instagramButtonBorderColor,
+        borderWidth: loginButtonInfo.borderWidth,
+        borderRadius: loginButtonInfo.borderRadius,
+        width: standardComponentWidth,
+        height: loginButtonInfo.height,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      instagramButtonTouchableHighlightstyle: {
+        backgroundColor: 'transparent',
+        width: standardComponentWidth,
+        height: loginButtonInfo.height,
+        marginTop: 5
+      },
+      facebookLoginButton: {
+        backgroundColor: colors.facebook,
+      },
+      facebookButtonTouchableHighlightStyle: {
+        marginTop: 20,
+        marginBottom: 5
+      },
+      forgottenLoginEncapsulationView: {
+        flexDirection: 'row',
+        flex: 1,
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      orSeperatorView: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 14,
+        paddingHorizontal: 5
+      },
+      orSeperatorLine: {
+        backgroundColor: colors.instagramButtonBorderColor,
+        borderColor: colors.instagramButtonBorderColor,
+        height: 1,
+        flex: 5,
+        borderWidth: 0.5
+      },
+      twitterLoginViewStyle: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      twitterIconViewStyle:{
+        width: twitterIconSize,
+        height: twitterIconSize,
+        MarginHorizontal: 14
+      },
+      signUpFootercomponent:{
+        flex: 0.3,
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 255, 0.15)',
+        shadowColor: 'black',
+        shadowOffset: {width: 0, height: 1.5},
+        height: null,
+        width: windowSize.width
+      },
+    };
+
+    const viewStyles = {
+      container: {
+        flex: 1,
+        alignItems: 'center',
+      },
+      instagramTextLogo: {
+        width: 150,
+        height: 80,
+        marginTop: '35%',
+        marginBottom: 25,
+        alignSelf : 'center'
+      },
+      instagramLoginButtonView: {
+        backgroundColor: 'transparent',
+        borderColor: colors.instagramButtonBorderColor,
+        borderWidth: loginButtonInfo.borderWidth,
+        borderRadius: loginButtonInfo.borderRadius,
+        width: standardComponentWidth,
+        height: loginButtonInfo.height,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      instagramButtonTouchableHighlightstyle: {
+        backgroundColor: 'transparent',
+        width: standardComponentWidth,
+        height: loginButtonInfo.height,
+        marginTop: 5
+      },
+      facebookLoginButton: {
+        backgroundColor: colors.facebook,
+      },
+      facebookButtonTouchableHighlightStyle: {
+        marginTop: 20,
+        marginBottom: 5
+      },
+      forgottenLoginEncapsulationView: {
+        flexDirection: 'row',
+        flex: 1,
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      orSeperatorView: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 14,
+        paddingHorizontal: 5
+      },
+      orSeperatorLine: {
+        backgroundColor: colors.instagramButtonBorderColor,
+        borderColor: colors.instagramButtonBorderColor,
+        height: 1,
+        flex: 5,
+        borderWidth: 0.5
+      },
+      twitterLoginViewStyle: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      twitterIconViewStyle:{
+        width: twitterIconSize,
+        height: twitterIconSize,
+        MarginHorizontal: 14
+      },
+      signUpFootercomponent:{
+        flex: 0.3,
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 255, 0.15)',
+        shadowColor: 'black',
+        shadowOffset: {width: 0, height: 1.5},
+        height: null,
+        width: windowSize.width
+      },
+    };
