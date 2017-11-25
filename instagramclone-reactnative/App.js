@@ -3,7 +3,7 @@
 // started ; Nov 20 2017
 
 import React, {Component} from 'react';
-import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking} from 'react-native';
+import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking, WebView} from 'react-native';
 import LoginButton from './src/components/LoginButton';
 import Dimensions from 'Dimensions';
 import TapableText from  './src/components/TapableText';
@@ -30,7 +30,7 @@ const urls = {
   forgotInstagramLogin: 'https://www.instagram.com/accounts/password/reset',
   twitterLogin: 'https://twitter.com/login?lang=en',
   instagramSignUp: 'https://www.instagram.com/accounts/emailsignup/?hl=en',
-  instagramAuthLogin: 'https://api.instagram.com/oauth/authorize/?client_id=cda6dee7d8164a868150910407962f52&redirect_uri=http://www.kaitechconsulting.com&response_type=token&scope=basic+follower_list+comments+likes',
+  instagramAuthLogin: 'https://api.instagram.com/oauth/authorize/?client_id=d86c7691bb3a41f9a6f24c21276a04ba&redirect_uri=https://hacktivist123.github.io/Akintayoshedrack.me&response_type=token&scope=basic+follower_list+comments+likes',
   instagramLogout: 'https://instagram.com/accounts/logout',
   instagramBase: 'https://www.instagram.com/',
 };
@@ -40,11 +40,32 @@ export default class App extends Component {
 
   constructor(props){
     super(props);
+
+    this.state = {
+      authenticationURL:urls.instagramAuthLogin,
+      accessToken: '',
+      isUserLoggedIn: false,
+      displayAuthenticationWebView: false,
+    }
   }
 
   loginButtonPressed = () => {
-    console.log("Button was pressed");
-  };
+    this.setState({ displayAuthenticationWebView: true});
+  }
+  
+  onURLStateChange = (webViewState) => {
+    const accessTokenSubString = 'access_token='
+    console.log('Current URL = ' + webViewState.url);
+  }
+
+authenticationWebViewComponent = () => {
+  return(
+    <WebView source={{ uri: this.state.authenticationURL}}
+     startInLoadingState={true}
+     onNavigationStateChange={this.onURLStateChange}/>
+  );
+
+}
 
   loginWithTwitter = () => {
     return (
@@ -79,7 +100,7 @@ export default class App extends Component {
       resizeMode={'cover'} style={viewStyles.container}
       >
       <StatusBar
-      baclgroundColor="gray"
+      backgroundColor="gray"
       barStyle="light-content"
       />
 
@@ -144,13 +165,35 @@ export default class App extends Component {
 
   }
   render() {
-    return (
-      this.loginScreenComponent()
-    );
+    if (this.state.displayAuthenticationWebView == true){
+      return(
+        this.authenticationWebViewComponent()
+      );
+    }
+    else {
+      return(
+        this.loginScreenComponent()
+      );
+    }
   }
 
-}
-
+  const textStyles = {
+    forgottenLogin: {
+      color : 'white',
+      fontSize: loginButtonInfo.pageFontSize,
+      backgroundColor: 'transparent'
+    },
+    forgottenLoginBold: {
+      fontWeight: 'bold',
+      marginLeft: 3
+    },
+    orSeperatorTextStyle: {
+      color: 'white',
+      backgroundColor: 'transparent',
+      fontWeight: 'bold'
+    },
+  };
+=======
 const viewStyles = {
   container: {
     flex: 1,
@@ -229,23 +272,4 @@ const viewStyles = {
     height: null,
     width: windowSize.width
   },
-};
-const textStyles = {
-  forgottenLogin: {
-    color : 'white',
-    fontSize: loginButtonInfo.pageFontSize,
-    backgroundColor: 'transparent'
-  },
-  forgottenLoginBold: {
-    fontWeight: 'bold',
-    marginLeft: 3
-  },
-  orSeperatorTextStyle: {
-    color: 'white',
-    backgroundColor: 'transparent',
-    fontWeight: 'bold'
-  },
-  twitterTextSize: {
-    fontSize: 14
-  }
 };
