@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Text, View, Image} from 'react-native';
-import { CellUserDataBar } from './';
+import {Text, View, Image, ImageBackground} from 'react-native';
+import  CellUserDataBar  from './CellUserDataBar';
 
 class InstaFeedCell extends Component {
 
@@ -12,7 +12,7 @@ class InstaFeedCell extends Component {
 
   render(){
 
-    /*
+    /*jus for my pleasure tho!!
     <CellUserDataBar
       username={this.props.cellData.user.username}
       imageURL={this.props.cellData.user.profile_picture}
@@ -35,4 +35,4 @@ class InstaFeedCell extends Component {
 
 }
 
-export { InstaFeedCell };
+export default InstaFeedCell

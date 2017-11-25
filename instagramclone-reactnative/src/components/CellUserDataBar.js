@@ -60,4 +60,4 @@ const textStyles = {
   }
 };
 
-export { CellUserDataBar };
+export default CellUserDataBar

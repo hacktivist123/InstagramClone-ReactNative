@@ -4,13 +4,13 @@
 
 //where we do all our Importing!!!!!
 import React, {Component} from 'react';
-import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking, WebView} from 'react-native';
+import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking, WebView, FlatList} from 'react-native';
 import LoginButton from './src/components/LoginButton';
 import Dimensions from 'Dimensions';
 import TapableText from  './src/components/TapableText';
 import InstaNavigationBar from './src/components/InstaNavigationBar';
 import NetworkManager from './src/models/NetworkManager'
-
+import InstaFeedCell from './src/components/InstaFeedCell'
 
 //Independent Constants
 const windowSize = Dimensions.get('window');
@@ -76,11 +76,15 @@ export default class App extends Component {
         this.apiManager= new NetworkManager(foundAccessToken);
 
         //this is suppose to get all our feed data
-        this.apiManager.getSessionAndFeedData( (userData) => {}, (feedData) => {} );
+        this.apiManager.getSessionAndFeedData( (userData) => {
+          console.log(userData);
+          this.userData = userData;
+        }, (feedData) => {
+          console.log(feedData)
+          //this is a function to find our Access Token
+          this.setState({accessToken: foundAccessToken});
+        });
 
-        //this is a function to find our Access Token
-
-        this.setState({accessToken: foundAccessToken});
       }
     }
   }
@@ -120,7 +124,20 @@ export default class App extends Component {
   instagramFeedScreenComponent = () => {
     return(
       <View style = {{ flex:1,}}>
-        <InstaNavigationBar/>
+      <InstaNavigationBar/>
+      <FlatList
+      data={this.props.reduxState.feedData}
+      renderItem={({item}) => <FeedCell cellData={item}/>}
+      keyExtractor={item => item.id}
+      onViewableItemsChanged={({viewableItems, changed}) => this.onViewableItemsChanged}
+      />
+      <ImageBackground
+        source ={{uri: this.props.cellData.images.standard_resolution.url}}
+        resizeMode={'cover'}
+        style= {{width: '200%', height: this.props.cellData.images.standard_resolution.height/2}}
+        >
+      </ImageBackground>
+
       </View>
     );
   }

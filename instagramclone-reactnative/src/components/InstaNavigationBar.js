@@ -70,4 +70,4 @@ const viewStyles = {
 
 }
 
-export { InstaNavigationBar };
+export  default InstaNavigationBar
