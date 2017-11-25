@@ -64,6 +64,8 @@ export default class App extends Component {
       var startIndexOfAccessToken = webViewState.url.lastIndexOf(accessTokenSubString) + accessTokenSubString.length;
       var foundAccessToken = webViewState.substr(startIndexOfAccessToken);
       console.log("My Access Token = " + foundAccessToken);
+
+      this.setState({accessToken: foundAccessToken, displayAuthenticationWebView: false });
     }
   }
 }
