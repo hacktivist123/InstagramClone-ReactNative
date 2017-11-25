@@ -75,6 +75,11 @@ export default class App extends Component {
 
         this.apiManager= new NetworkManager(foundAccessToken);
 
+        //this is suppose to get all our feed data
+        this.apiManager.getSessionAndFeedData( (userData) => {}, (feedData) => {} );
+
+        //this is a function to find our Access Token
+
         this.setState({accessToken: foundAccessToken});
       }
     }
