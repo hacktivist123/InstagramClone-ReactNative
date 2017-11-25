@@ -2,13 +2,17 @@
 //Title = Instagram Clone With React native
 //Time = 9:30am, Nov 20, 2017
 
+//where we do all our Importing!!!!!
 import React, {Component} from 'react';
 import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking, WebView} from 'react-native';
 import LoginButton from './src/components/LoginButton';
 import Dimensions from 'Dimensions';
 import TapableText from  './src/components/TapableText';
 import InstaNavigationBar from './src/components/InstaNavigationBar';
+import NetworkManager from './src/models/NetworkManager'
 
+
+//Independent Constants
 const windowSize = Dimensions.get('window');
 const standardComponentWidth = windowSize.width*0.82;
 const twitterIconSize = 19;
@@ -65,6 +69,11 @@ export default class App extends Component {
         var startIndexOfAccessToken = webViewState.url.lastIndexOf(accessTokenSubString) + accessTokenSubString.length;
         var foundAccessToken = webViewState.substr(startIndexOfAccessToken);
         console.log("My Access Token = " + foundAccessToken);
+
+
+        //make a network call to get the user Details
+
+        this.apiManager= new NetworkManager(foundAccessToken);
 
         this.setState({accessToken: foundAccessToken});
       }
