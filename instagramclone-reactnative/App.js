@@ -91,7 +91,7 @@ export default class App extends Component {
   }
 
 =======
-  
+
   onURLStateChange = (webViewState) => {
     const accessTokenSubString = 'access_token='
     console.log('Current URL = ' + webViewState.url);
