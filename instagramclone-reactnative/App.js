@@ -7,6 +7,7 @@ import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking, Web
 import LoginButton from './src/components/LoginButton';
 import Dimensions from 'Dimensions';
 import TapableText from  './src/components/TapableText';
+import InstaNavigationBar from './src/components/InstaNavigationBar';
 
 const windowSize = Dimensions.get('window');
 const standardComponentWidth = windowSize.width*0.82;
@@ -104,9 +105,8 @@ export default class App extends Component {
   }
   instagramFeedScreenComponent = () => {
     return(
-      <View style = {{ flex:1, alignItems: 'center', justifyContent : 'center'}}>
-      <Text>Congratulations Oti Wole Instagram with accessToken:</Text>
-      <Text>{this.state.accessToken}</Text>
+      <View style = {{ flex:1,}}>
+        <InstaNavigationBar/>
       </View>
     );
   }
@@ -120,10 +120,6 @@ export default class App extends Component {
       </View>
     );
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> cb94337ee0edd060991e0ebed13e568783e6077b
   signUpFootercomponent=() => {
     return(
       <View style= {[viewStyles.signUpFootercomponent]}>
@@ -207,7 +203,7 @@ export default class App extends Component {
       {this.signUpFootercomponent}
       </ImageBackground>
 
-    );
+    );instagramFeed
 
   }
   render() {
@@ -230,13 +226,6 @@ export default class App extends Component {
       );
     }
 
-    else {
-      return(
-        this.loginScreenComponent()
-      );
-    }
-
-<<<<<<< HEAD
     const textStyles = {
       forgottenLogin: {
         color : 'white',
@@ -412,179 +401,3 @@ export default class App extends Component {
         width: windowSize.width
       },
     };
-=======
-  const textStyles = {
-    forgottenLogin: {
-      color : 'white',
-      fontSize: loginButtonInfo.pageFontSize,
-      backgroundColor: 'transparent'
-    },
-    forgottenLoginBold: {
-      fontWeight: 'bold',
-      marginLeft: 3
-    },
-    orSeperatorTextStyle: {
-      color: 'white',
-      backgroundColor: 'transparent',
-      fontWeight: 'bold'
-    },
-  };
-  const viewStyles = {
-    container: {
-      flex: 1,
-      alignItems: 'center',
-    },
-    instagramTextLogo: {
-      width: 150,
-      height: 80,
-      marginTop: '35%',
-      marginBottom: 25,
-      alignSelf : 'center'
-    },
-    instagramLoginButtonView: {
-      backgroundColor: 'transparent',
-      borderColor: colors.instagramButtonBorderColor,
-      borderWidth: loginButtonInfo.borderWidth,
-      borderRadius: loginButtonInfo.borderRadius,
-      width: standardComponentWidth,
-      height: loginButtonInfo.height,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    instagramButtonTouchableHighlightstyle: {
-      backgroundColor: 'transparent',
-      width: standardComponentWidth,
-      height: loginButtonInfo.height,
-      marginTop: 5
-    },
-    facebookLoginButton: {
-      backgroundColor: colors.facebook,
-    },
-    facebookButtonTouchableHighlightStyle: {
-      marginTop: 20,
-      marginBottom: 5
-    },
-    forgottenLoginEncapsulationView: {
-      flexDirection: 'row',
-      flex: 1,
-      marginTop: 10,
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    orSeperatorView: {
-      flexDirection: 'row',
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginVertical: 14,
-      paddingHorizontal: 5
-    },
-    orSeperatorLine: {
-      backgroundColor: colors.instagramButtonBorderColor,
-      borderColor: colors.instagramButtonBorderColor,
-      height: 1,
-      flex: 5,
-      borderWidth: 0.5
-    },
-    twitterLoginViewStyle: {
-      flexDirection: 'row',
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    twitterIconViewStyle:{
-      width: twitterIconSize,
-      height: twitterIconSize,
-      MarginHorizontal: 14
-    },
-    signUpFootercomponent:{
-      flex: 0.3,
-      backgroundColor: 'rgba(255, 255, 255, 0.15)',
-      borderWidth: 1,
-      borderColor: 'rgba(255, 255, 255, 255, 0.15)',
-      shadowColor: 'black',
-      shadowOffset: {width: 0, height: 1.5},
-      height: null,
-      width: windowSize.width
-    },
-  };
-const viewStyles = {
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  instagramTextLogo: {
-    width: 150,
-    height: 80,
-    marginTop: '35%',
-    marginBottom: 25,
-    alignSelf : 'center'
-  },
-  instagramLoginButtonView: {
-    backgroundColor: 'transparent',
-    borderColor: colors.instagramButtonBorderColor,
-    borderWidth: loginButtonInfo.borderWidth,
-    borderRadius: loginButtonInfo.borderRadius,
-    width: standardComponentWidth,
-    height: loginButtonInfo.height,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  instagramButtonTouchableHighlightstyle: {
-    backgroundColor: 'transparent',
-    width: standardComponentWidth,
-    height: loginButtonInfo.height,
-    marginTop: 5
-  },
-  facebookLoginButton: {
-    backgroundColor: colors.facebook,
-  },
-  facebookButtonTouchableHighlightStyle: {
-    marginTop: 20,
-    marginBottom: 5
-  },
-  forgottenLoginEncapsulationView: {
-    flexDirection: 'row',
-    flex: 1,
-    marginTop: 10,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  orSeperatorView: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 14,
-    paddingHorizontal: 5
-  },
-  orSeperatorLine: {
-    backgroundColor: colors.instagramButtonBorderColor,
-    borderColor: colors.instagramButtonBorderColor,
-    height: 1,
-    flex: 5,
-    borderWidth: 0.5
-  },
-  twitterLoginViewStyle: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  twitterIconViewStyle:{
-    width: twitterIconSize,
-    height: twitterIconSize,
-    MarginHorizontal: 14
-  },
-  signUpFootercomponent:{
-    flex: 0.3,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 255, 0.15)',
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 1.5},
-    height: null,
-    width: windowSize.width
-  },
-};
->>>>>>> cb94337ee0edd060991e0ebed13e568783e6077b
