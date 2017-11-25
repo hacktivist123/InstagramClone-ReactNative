@@ -1,6 +1,6 @@
 //Created by Akintayo shedrack
-//With React native
-// started ; Nov 20
+//Instagram Clone With React native
+// started ; Nov 20 2017
 
 import React, {Component} from 'react';
 import { Text, View, ImageBackground, StatusBar, ScrollView, Image, Linking, WebView} from 'react-native';
@@ -10,6 +10,7 @@ import TapableText from  './src/components/TapableText';
 
 const windowSize = Dimensions.get('window');
 const standardComponentWidth = windowSize.width*0.82;
+const twitterIconSize = 19;
 
 const colors = {
   facebook: 'rgb(59, 89, 152)',
@@ -51,7 +52,7 @@ export default class App extends Component {
   loginButtonPressed = () => {
     this.setState({ displayAuthenticationWebView: true});
   }
-
+  
   onURLStateChange = (webViewState) => {
     const accessTokenSubString = 'access_token='
     console.log('Current URL = ' + webViewState.url);
@@ -65,6 +66,32 @@ authenticationWebViewComponent = () => {
   );
 
 }
+
+  loginWithTwitter = () => {
+    return (
+      <View style= {viewStyles.twitterLoginViewStyle}>
+      <Image
+      source={require('./src/images/icons/twitter_bird.png')}
+      style ={viewStyles.twitterIconViewStyle}
+      resizeMode = 'contain'/>
+      </View>
+    );
+  }
+
+  signUpFootercomponent=() => {
+    return(
+      <View style= {[viewStyles.signUpFootercomponent]}>
+      <Text style={textStyles.forgottenLogin}>Dont Have An Account?</Text>
+      <TapableText
+      textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold]}
+      //this should create a link behind the SignUp in text using Linkin and openURL
+      textTapped={ () => Linking.openURL(urls.instagramSignUp) }
+      >
+      Sign Up
+      </TapableText>
+      </View>
+    );
+  }
 
   loginScreenComponent = () => {
     return (
@@ -115,14 +142,23 @@ authenticationWebViewComponent = () => {
       </TapableText>
       </View>
 
-      <view style = {viewStyles.orSeperatorView}>
-      <view style = { viewStyles.orSeperatorLine}/>
+      <View style = {viewStyles.orSeperatorView}>
+      <View style = { viewStyles.orSeperatorLine}/>
       <Text style = {textStyles.orSeperatorTextStyle}>OR</Text>
+      <TapableText
+      textStyle={[textStyles.forgottenLogin, textStyles.forgottenLoginBold, textStyles.twitterTextSize]}
+      //this should create a link behind the login with twitter in text using Linkin and openURL
+      textTapped={ () => Linking.openURL(urls.twitterLogin) }
+      >
+      Login with Twitter
+      </TapableText>
+      <View style = {viewStyles.orSeperatorLine}/>
+      </View>
 
-      </view>
+      {this.loginWithTwitter()}
 
       </ScrollView>
-
+      {this.signUpFootercomponent}
       </ImageBackground>
 
     );
@@ -141,65 +177,6 @@ authenticationWebViewComponent = () => {
     }
   }
 
-
-  const viewStyles = {
-    container: {
-      flex: 1,
-      alignItems: 'center',
-    },
-    instagramTextLogo: {
-      width: 150,
-      height: 80,
-      marginTop: '65%',
-      marginBottom: 25,
-      alignSelf : 'center'
-    },
-    instagramLoginButtonView: {
-      backgroundColor: 'transparent',
-      borderColor: colors.instagramButtonBorderColor,
-      borderWidth: loginButtonInfo.borderWidth,
-      borderRadius: loginButtonInfo.borderRadius,
-      width: standardComponentWidth,
-      height: loginButtonInfo.height,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    instagramButtonTouchableHighlightstyle: {
-      backgroundColor: 'transparent',
-      width: standardComponentWidth,
-      height: loginButtonInfo.height,
-      marginTop: 5
-    },
-    facebookLoginButton: {
-      backgroundColor: colors.facebook,
-    },
-    facebookButtonTouchableHighlightStyle: {
-      marginTop: 20,
-      marginBottom: 5
-    },
-    forgottenLoginEncapsulationView: {
-      flexDirection: 'row',
-      flex: 1,
-      marginTop: 10,
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    orSeperatorView: {
-      flexDirection: 'row',
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: 13,
-      paddingHorizontal: 5
-    },
-    orSeperatorLine: {
-      backgroundColor: colors.instagramButtonBorderColor,
-      borderColor: colors.instagramButtonBorderColor,
-      height: 1,
-      flex: 5,
-      borderWidth: 0.5
-    },
-  };
   const textStyles = {
     forgottenLogin: {
       color : 'white',
@@ -216,3 +193,83 @@ authenticationWebViewComponent = () => {
       fontWeight: 'bold'
     },
   };
+=======
+const viewStyles = {
+  container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  instagramTextLogo: {
+    width: 150,
+    height: 80,
+    marginTop: '35%',
+    marginBottom: 25,
+    alignSelf : 'center'
+  },
+  instagramLoginButtonView: {
+    backgroundColor: 'transparent',
+    borderColor: colors.instagramButtonBorderColor,
+    borderWidth: loginButtonInfo.borderWidth,
+    borderRadius: loginButtonInfo.borderRadius,
+    width: standardComponentWidth,
+    height: loginButtonInfo.height,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  instagramButtonTouchableHighlightstyle: {
+    backgroundColor: 'transparent',
+    width: standardComponentWidth,
+    height: loginButtonInfo.height,
+    marginTop: 5
+  },
+  facebookLoginButton: {
+    backgroundColor: colors.facebook,
+  },
+  facebookButtonTouchableHighlightStyle: {
+    marginTop: 20,
+    marginBottom: 5
+  },
+  forgottenLoginEncapsulationView: {
+    flexDirection: 'row',
+    flex: 1,
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  orSeperatorView: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 14,
+    paddingHorizontal: 5
+  },
+  orSeperatorLine: {
+    backgroundColor: colors.instagramButtonBorderColor,
+    borderColor: colors.instagramButtonBorderColor,
+    height: 1,
+    flex: 5,
+    borderWidth: 0.5
+  },
+  twitterLoginViewStyle: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  twitterIconViewStyle:{
+    width: twitterIconSize,
+    height: twitterIconSize,
+    MarginHorizontal: 14
+  },
+  signUpFootercomponent:{
+    flex: 0.3,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 255, 0.15)',
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 1.5},
+    height: null,
+    width: windowSize.width
+  },
+};
